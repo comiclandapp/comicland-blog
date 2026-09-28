@@ -139,3 +139,51 @@
     box-shadow: 0 10px 22px rgba(47, 119, 176, 0.4);
     color: #ffffff !important;
   }
+
+  /* Fix: WordPress centers fit-content blocks in the constrained column via
+     margin:auto !important, but that only works on display:block elements --
+     inline-block's auto margins resolve to 0 per spec, not centering. Since
+     both of these were set to inline-block above (for the pill shrink-to-fit
+     look), they were snapping to the page's true left edge instead of
+     aligning with the title/excerpt column. Restoring block + fit-content
+     (which is what core already uses) and explicitly pinning to the left of
+     that column, rather than letting it center, fixes the misalignment. */
+  .wp-block-read-more,
+  .wp-block-post-date {
+    display: block !important;
+    width: fit-content;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  /* Blog index: card grid (TED-blog-inspired) -- equal-height cards with
+     Read More pinned to the bottom regardless of excerpt length, category
+     tag above the headline. */
+  .wp-block-post-template.is-layout-grid {
+    gap: 32px;
+  }
+  .wp-block-post {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .wp-block-post > .wp-block-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .wp-block-read-more {
+    margin-top: auto !important;
+  }
+
+  /* Category tag above the headline on index cards -- reuses the same
+     pill treatment as the single-post page's own category badge. */
+  .wp-block-post .taxonomy-category {
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 782px) {
+    .wp-block-post-template.is-layout-grid {
+      gap: 24px;
+    }
+  }
