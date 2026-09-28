@@ -165,7 +165,10 @@
   .wp-block-post {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* No explicit height here -- CSS Grid's default align-items:stretch
+       already fills each item to its row's height. An explicit height:100%
+       was fighting that (percentage heights don't resolve reliably against
+       an auto-sized grid track) and caused row 2's cards to overlap row 1. */
   }
   .wp-block-post > .wp-block-group {
     display: flex;
