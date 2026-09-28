@@ -84,8 +84,10 @@
     border-radius: 999px;
   }
 
-  /* Category badge */
-  .taxonomy-category {
+  /* Category badge -- index cards only (single-post page's own category
+     label is plain text, styled separately below, matching TED Blog's
+     unbadged "News"-style label above the headline there). */
+  .wp-block-post .taxonomy-category {
     display: inline-block;
     background: var(--blue-light);
     color: var(--blue-dark);
@@ -94,9 +96,30 @@
     padding: 4px 12px;
     border-radius: 999px;
   }
-  .taxonomy-category a {
+  .wp-block-post .taxonomy-category a {
     color: var(--blue-dark);
     text-decoration: none;
+  }
+
+  /* Single post: plain category label above the title, TED Blog-style. */
+  .single-post-category {
+    color: #8a97a0;
+    font-style: italic;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+  }
+  .single-post-category a {
+    color: #8a97a0;
+    text-decoration: none;
+  }
+  .single-post-category a:hover {
+    text-decoration: underline;
+  }
+
+  /* Single post: "Posted by {author} on {date}" byline under the title. */
+  .single-post-byline {
+    color: #6b7a86;
+    font-size: 0.9em;
   }
 
   /* Featured image (blog index) */
@@ -222,3 +245,4 @@
     margin-left: 0 !important;
     margin-right: auto !important;
   }
+
