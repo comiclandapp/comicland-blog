@@ -1,0 +1,65 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}}},"layout":{"type":"flex","justifyContent":"right"}} -->
+<div class="wp-block-group alignwide" style="padding-top:20px;padding-bottom:20px"><!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","justifyContent":"right"}} -->
+<!-- wp:navigation-link {"label":"Contact","url":"https://blog.comicland.net/contact"} /-->
+
+<!-- wp:navigation-link {"label":"Get the App","url":"https://app.comicland.net"} /-->
+<!-- /wp:navigation --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"72px","bottom":"64px"}},"color":{"gradient":"linear-gradient(180deg,rgb(203,232,251) 0%,rgb(185,222,249) 100%)"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-background" style="background-image:linear-gradient(180deg,rgba(203,232,251,0.82) 0%,rgba(185,222,249,0.88) 100%),url(https://blog.comicland.net/wp-content/uploads/2026/09/comicland-hero-bg.jpg);background-size:cover;background-position:left center;background-repeat:no-repeat;margin-top:0;padding-top:72px;padding-bottom:64px"><!-- wp:image {"id":26,"width":"140px","height":"auto","sizeSlug":"full","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="https://blog.comicland.net/wp-content/uploads/2026/09/comicland-icon.png" alt="ComicLand icon" class="wp-image-26" style="width:140px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:image {"id":27,"width":"420px","height":"auto","sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large is-resized"><img src="https://blog.comicland.net/wp-content/uploads/2026/09/comicland-wordmark-1024x171.png" alt="" class="wp-image-27" style="width:420px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph {"style":{"typography":{"textAlign":"center"},"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
+<p class="has-text-align-center" style="margin-top:var(--wp--preset--spacing--30)">Catalog, track, and read your comic collection — from a manual entry to your whole League of Comic Geeks, BDGest, BubbleBD, or Whakoom library, all in one place.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)"><!-- wp:heading {"level":1,"metadata":{"patternName":"twentytwentyfive/hidden-blog-heading","name":"Hidden blog heading","description":"Hidden heading for the home page and index template."},"style":{"typography":{"textAlign":"left"}}} -->
+<h1 class="wp-block-heading has-text-align-left">Blog</h1>
+<!-- /wp:heading -->
+
+<!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true,"taxQuery":null,"parents":[],"excludeCurrent":null},"metadata":{"patternName":"twentytwentyfive/template-query-loop","name":"List of posts, 1 column","description":"A list of posts, 1 column, with featured image and post date.","categories":["query"]},"align":"full","layout":{"type":"default"}} -->
+<div class="wp-block-query alignfull"><!-- wp:post-template {"align":"full","layout":{"type":"default"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2"} /-->
+
+<!-- wp:post-title {"isLink":true,"fontSize":"x-large"} /-->
+
+<!-- wp:post-excerpt {"excerptLength":30} /-->
+
+<!-- wp:read-more {"content":"Read More"} /-->
+
+<!-- wp:post-date {"isLink":true,"metadata":{"bindings":{"datetime":{"source":"core/post-data","args":{"field":"date"}}}},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}},"fontSize":"small"} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>Sorry, but nothing was found. Please try a search with different keywords.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide"><!-- wp:query-pagination {"paginationArrow":"arrow","align":"wide","layout":{"type":"flex","justifyContent":"space-between"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination --></div>
+<!-- /wp:group --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"twentytwentyfive"} /-->
