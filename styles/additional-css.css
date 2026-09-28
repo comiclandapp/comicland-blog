@@ -207,3 +207,18 @@
   .wp-block-post-excerpt__more-text {
     margin-top: 0 !important;
   }
+
+  /* Belt-and-suspenders left-alignment for card content (category, title,
+     byline) -- covers both possible centering mechanisms (inherited
+     text-align, and margin:auto centering of fit-content/inline-block
+     elements) so these stay flush left regardless of which one is live. */
+  .wp-block-post > .wp-block-group {
+    text-align: left;
+  }
+  .wp-block-post .taxonomy-category,
+  .wp-block-post .wp-block-post-title,
+  .wp-block-post .post-byline {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
