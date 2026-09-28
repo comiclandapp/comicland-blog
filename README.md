@@ -53,6 +53,22 @@ The global styles post ID (`8` above) is site-specific — rediscover it via
 
 ## Pushing a local edit live
 
+This repo includes `Scripts/deploy-wordpress.sh`, which reads `SITE` and
+`AUTH` from an untracked `.env.local` file if present:
+
+```bash
+SITE='https://blog.comicland.net'
+AUTH='codex-agent:xxxx xxxx xxxx xxxx xxxx xxxx'
+```
+
+Then deploy both tracked live-editable files with:
+
+```bash
+Scripts/deploy-wordpress.sh
+```
+
+The manual API calls below are kept as a reference.
+
 Edit the file locally, then PATCH it back — each of these merges just the
 one field being changed, so fetch the other current fields first if editing
 by hand rather than scripting it (an example flow is in the git history of
