@@ -118,26 +118,6 @@
     margin-bottom: 1.2em;
   }
 
-  /* Read More link (blog index) -- pill button matching .wp-block-button__link */
-  .wp-block-read-more {
-    display: inline-block;
-    margin-top: 12px;
-    background-color: var(--blue-dark) !important;
-    color: #ffffff !important;
-    font-weight: 600;
-    font-size: 0.9em;
-    text-decoration: none !important;
-    border-radius: 999px;
-    padding: 10px 24px;
-    box-shadow: 0 6px 16px rgba(47, 119, 176, 0.3);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .wp-block-read-more:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(47, 119, 176, 0.4);
-    color: #ffffff !important;
-  }
-
   /* Fix: WordPress centers fit-content blocks in the constrained column via
      margin:auto !important, but that only works on display:block elements --
      inline-block's auto margins resolve to 0 per spec, not centering. Since
@@ -146,7 +126,6 @@
      aligning with the title/excerpt column. Restoring block + fit-content
      (which is what core already uses) and explicitly pinning to the left of
      that column, rather than letting it center, fixes the misalignment. */
-  .wp-block-read-more,
   .wp-block-post-date {
     display: block !important;
     width: fit-content;
@@ -173,10 +152,6 @@
     flex-direction: column;
     flex: 1;
   }
-  .wp-block-read-more {
-    margin-top: auto !important;
-  }
-
   /* Category tag above the headline on index cards -- reuses the same
      pill treatment as the single-post page's own category badge. */
   .wp-block-post .taxonomy-category {
@@ -187,4 +162,48 @@
     .wp-block-post-template.is-layout-grid {
       gap: 24px;
     }
+  }
+
+  /* Byline ("By {author} on {date}") above each card's excerpt, TED
+     Blog-style -- scoped to .post-byline so the single-post page's own
+     date pill (unrelated, stock theme markup) is untouched. */
+  .post-byline {
+    gap: 4px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    color: #6b7a86;
+    font-size: 0.85em;
+  }
+  .post-byline .wp-block-post-author-name {
+    display: inline;
+    font-weight: 400;
+  }
+  .post-byline .wp-block-post-author-name::before {
+    content: "By ";
+  }
+  .post-byline .wp-block-post-date {
+    display: inline !important;
+    background: none !important;
+    color: #6b7a86 !important;
+    font-weight: 400 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    margin-left: 0 !important;
+  }
+  .post-byline .wp-block-post-date::before {
+    content: "on ";
+  }
+
+  /* "[...]" continuation link, in place of the old Read More button --
+     muted, matching TED Blog's understated treatment. */
+  .wp-block-post-excerpt__more-link {
+    color: #9aa7b0;
+    text-decoration: none;
+  }
+  .wp-block-post-excerpt__more-link:hover {
+    color: var(--blue-dark);
+    text-decoration: underline;
+  }
+  .wp-block-post-excerpt__more-text {
+    margin-top: 0 !important;
   }
