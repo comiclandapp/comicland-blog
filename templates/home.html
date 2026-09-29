@@ -29,10 +29,49 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)"><!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true,"taxQuery":null,"parents":[],"excludeCurrent":null},"metadata":{"patternName":"twentytwentyfive/template-query-loop","name":"List of posts, 1 column","description":"A list of posts, 1 column, with featured image and post date.","categories":["query"]},"align":"full","layout":{"type":"default"}} -->
-<div class="wp-block-query alignfull"><!-- wp:post-template {"align":"full","layout":{"type":"grid","columnCount":2}} -->
+<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
+
+<!-- wp:group {"align":"wide","className":"comicland-filterbar","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group alignwide comicland-filterbar"><!-- wp:paragraph {"className":"comicland-filterbar-label"} -->
+<p class="comicland-filterbar-label">Filter articles by:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"comicland-filterbar-link"} -->
+<p class="comicland-filterbar-link"><a href="#newest">Newest</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"comicland-filterbar-link"} -->
+<p class="comicland-filterbar-link"><a href="#popular">Popular</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","className":"comicland-catbar","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group alignwide comicland-catbar"><!-- wp:paragraph {"className":"comicland-catbar-label"} -->
+<p class="comicland-catbar-label">Categories:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"comicland-cat-pill comicland-cat-all"} -->
+<p class="comicland-cat-pill comicland-cat-all"><a href="/">All</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"comicland-cat-pill comicland-cat-development"} -->
+<p class="comicland-cat-pill comicland-cat-development"><a href="/category/development/">Development</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"comicland-cat-pill comicland-cat-announcements"} -->
+<p class="comicland-cat-pill comicland-cat-announcements"><a href="/category/announcements/">Announcements</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"comicland-cat-pill comicland-cat-release-notes"} -->
+<p class="comicland-cat-pill comicland-cat-release-notes"><a href="/category/release-notes/">Release Notes</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","className":"comicland-view comicland-view-newest","layout":{"type":"constrained"}} -->
+<div id="newest" class="wp-block-group alignwide comicland-view comicland-view-newest"><!-- wp:query {"queryId":0,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true,"taxQuery":null,"parents":[],"excludeCurrent":null},"metadata":{"patternName":"twentytwentyfive/template-query-loop","name":"List of posts, 1 column","description":"A list of posts, 1 column, with featured image and post date.","categories":["query"]},"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","layout":{"type":"grid","columnCount":2}} -->
 <!-- wp:group {"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2"} /-->
+<div class="wp-block-group"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
 
 <!-- wp:post-terms {"term":"category","prefix":""} /-->
 
@@ -65,7 +104,40 @@
 <!-- wp:query-pagination-next /-->
 <!-- /wp:query-pagination --></div>
 <!-- /wp:group --></div>
-<!-- /wp:query --></main>
+<!-- /wp:query --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","className":"comicland-view comicland-view-popular","layout":{"type":"constrained"}} -->
+<div id="popular" class="wp-block-group alignwide comicland-view comicland-view-popular"><!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"only","inherit":false,"taxQuery":null,"parents":[],"excludeCurrent":null},"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-query alignwide"><!-- wp:post-template {"align":"wide","layout":{"type":"grid","columnCount":2}} -->
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
+
+<!-- wp:post-terms {"term":"category","prefix":""} /-->
+
+<!-- wp:post-title {"isLink":true,"fontSize":"large","style":{"typography":{"textAlign":"left"}}} /-->
+
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"},"className":"post-byline"} -->
+<div class="wp-block-group post-byline"><!-- wp:post-author-name {"isLink":false} /-->
+
+<!-- wp:post-date {"isLink":false,"metadata":{"bindings":{"datetime":{"source":"core/post-data","args":{"field":"date"}}}},"format":"M j, Y"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:post-excerpt {"excerptLength":24,"moreText":"[...]","showMoreOnNewLine":false} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>No popular posts marked yet — check back soon!</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:group --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group -->
+
+</main>
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","theme":"twentytwentyfive"} /-->

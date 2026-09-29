@@ -14,22 +14,32 @@ fi
 
 css_payload="$(mktemp "${TMPDIR:-/tmp}/comicland-blog-css.XXXXXX.json")"
 home_payload="$(mktemp "${TMPDIR:-/tmp}/comicland-blog-home.XXXXXX.json")"
-trap 'rm -f "$css_payload" "$home_payload"' EXIT
+single_payload="$(mktemp "${TMPDIR:-/tmp}/comicland-blog-single.XXXXXX.json")"
+archive_payload="$(mktemp "${TMPDIR:-/tmp}/comicland-blog-archive.XXXXXX.json")"
+trap 'rm -f "$css_payload" "$home_payload" "$single_payload" "$archive_payload"' EXIT
 
 cd "$ROOT"
 
-python3 - "$css_payload" "$home_payload" <<'PY'
+python3 - "$css_payload" "$home_payload" "$single_payload" "$archive_payload" <<'PY'
 import json
 import sys
 from pathlib import Path
 
-css_payload, home_payload = sys.argv[1:3]
+css_payload, home_payload, single_payload, archive_payload = sys.argv[1:5]
 Path(css_payload).write_text(
     json.dumps({"styles": {"css": Path("styles/additional-css.css").read_text(encoding="utf-8")}}),
     encoding="utf-8",
 )
 Path(home_payload).write_text(
     json.dumps({"content": Path("templates/home.html").read_text(encoding="utf-8")}),
+    encoding="utf-8",
+)
+Path(single_payload).write_text(
+    json.dumps({"content": Path("templates/single.html").read_text(encoding="utf-8")}),
+    encoding="utf-8",
+)
+Path(archive_payload).write_text(
+    json.dumps({"content": Path("templates/archive.html").read_text(encoding="utf-8")}),
     encoding="utf-8",
 )
 PY
@@ -46,5 +56,16 @@ curl -fsS -X POST "$SITE/wp-json/wp/v2/templates/twentytwentyfive//home" \
   --data-binary @"$home_payload" \
   >/dev/null
 
-echo "Deployed CSS and home template to $SITE"
+curl -fsS -X POST "$SITE/wp-json/wp/v2/templates/twentytwentyfive//single" \
+  -u "$AUTH" \
+  -H 'Content-Type: application/json' \
+  --data-binary @"$single_payload" \
+  >/dev/null
 
+curl -fsS -X POST "$SITE/wp-json/wp/v2/templates/twentytwentyfive//archive" \
+  -u "$AUTH" \
+  -H 'Content-Type: application/json' \
+  --data-binary @"$archive_payload" \
+  >/dev/null
+
+echo "Deployed CSS, home, single-post, and archive templates to $SITE"

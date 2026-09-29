@@ -133,6 +133,129 @@
     display: block;
   }
 
+  /* Keep the two-column index grid narrow, with a compact TED-style cover
+     floated beside each headline and excerpt instead of a full-width image
+     stretching the column -- applies on the home index and any category
+     archive, anywhere the grid post-template is used (not scoped to .home
+     alone, so archive.html gets the same treatment). */
+  .wp-block-post-template.is-layout-grid .wp-block-post > .wp-block-group {
+    display: block;
+  }
+  .wp-block-post-template.is-layout-grid .wp-block-post-featured-image {
+    float: right;
+    width: min(38%, 280px);
+    margin: 0 0 16px 24px;
+  }
+  .wp-block-post-template.is-layout-grid .wp-block-post-featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #f3f5f7;
+  }
+  .wp-block-post-template.is-layout-grid .wp-block-post-excerpt::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  /* The index/archive grid itself: keep it comfortably narrower than full
+     page width (align:wide, not align:full) so cards read as a proper
+     two-column layout instead of stretching edge to edge. */
+  .wp-block-query.alignwide,
+  .wp-block-post-template.alignwide {
+    max-width: var(--wp--style--global--wide-size, 1200px);
+  }
+
+  /* "Filter articles by: Newest / Popular" row, TED Blog-style. */
+  .comicland-filterbar {
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+  .comicland-filterbar-label {
+    margin: 0;
+    font-style: italic;
+    color: #8a97a0;
+  }
+  .comicland-filterbar-link {
+    margin: 0;
+  }
+  .comicland-filterbar-link a {
+    color: #9aa7b0;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .comicland-filterbar-link a:hover {
+    color: var(--blue-dark);
+  }
+  /* Default (no #popular in the URL): "Newest" reads as the active tab. */
+  .comicland-filterbar-link:first-of-type a {
+    color: var(--blue-dark);
+  }
+  body:has(#popular:target) .comicland-filterbar-link:first-of-type a {
+    color: #9aa7b0;
+  }
+  body:has(#popular:target) .comicland-filterbar-link:last-of-type a {
+    color: var(--blue-dark);
+  }
+
+  /* Newest/Popular views -- pure-CSS tab switch via the URL hash, no JS. */
+  .comicland-view-popular {
+    display: none;
+  }
+  body:has(#popular:target) .comicland-view-newest {
+    display: none;
+  }
+  body:has(#popular:target) .comicland-view-popular {
+    display: block;
+  }
+
+  /* "Categories:" pill row. */
+  .comicland-catbar {
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--wp--preset--spacing--50, 32px);
+  }
+  .comicland-catbar-label {
+    margin: 0 4px 0 0;
+    font-size: 1.1em;
+  }
+  .comicland-cat-pill {
+    margin: 0;
+  }
+  .comicland-cat-pill a {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: #eef1f4;
+    color: #4a5b68;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .comicland-cat-pill a:hover {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+  }
+  /* Active pill: driven by WP's own body classes, no JS needed --
+     `.home` on the front page, `.category-<slug>` on that category's
+     archive. */
+  body.home .comicland-cat-all a,
+  body.category-development .comicland-cat-development a,
+  body.category-announcements .comicland-cat-announcements a,
+  body.category-release-notes .comicland-cat-release-notes a {
+    background: var(--blue-dark);
+    color: #ffffff;
+  }
+  body.home .comicland-cat-all a:hover,
+  body.category-development .comicland-cat-development a:hover,
+  body.category-announcements .comicland-cat-announcements a:hover,
+  body.category-release-notes .comicland-cat-release-notes a:hover {
+    background: var(--blue-dark);
+    color: #ffffff;
+  }
+
   /* Readability polish for post body on the index */
   .wp-block-post .wp-block-post-content {
     line-height: 1.65;
