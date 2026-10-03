@@ -5,13 +5,16 @@ Version-controlled backup of the hand-authored customizations on
 theme) running in Docker on the Synology NAS, exposed via a Cloudflare
 tunnel with no public ports and no filesystem/SSH access. Because of that,
 this repo doesn't hold the full WordPress install (themes, plugins,
-database) — it holds the two things that are actually hand-edited and
+database) — it holds the things that are actually hand-edited and
 worth tracking:
 
 ```
-styles/additional-css.css      Site-wide custom CSS (global styles "css" field)
-templates/home.html            Customized block markup for the front page
+styles/additional-css.css          Site-wide custom CSS (global styles "css" field)
+templates/home.html                Customized block markup for the front page
+templates/single.html              Customized block markup for a single post
+templates/archive.html             Customized block markup for category archives
 templates/page-contact-hero.html   Customized block markup for the Contact page
+template-parts/header.html         Shared header part (used by single/archive/contact, not home)
 ```
 
 Everything here is pulled from / pushed to the site via the WordPress REST
@@ -42,9 +45,21 @@ curl -s "$SITE/wp-json/wp/v2/templates/twentytwentyfive//home?context=edit" -u "
   | python3 -c "import json,sys; print(json.load(sys.stdin)['content']['raw'])" \
   > templates/home.html
 
+curl -s "$SITE/wp-json/wp/v2/templates/twentytwentyfive//single?context=edit" -u "$AUTH" \
+  | python3 -c "import json,sys; print(json.load(sys.stdin)['content']['raw'])" \
+  > templates/single.html
+
+curl -s "$SITE/wp-json/wp/v2/templates/twentytwentyfive//archive?context=edit" -u "$AUTH" \
+  | python3 -c "import json,sys; print(json.load(sys.stdin)['content']['raw'])" \
+  > templates/archive.html
+
 curl -s "$SITE/wp-json/wp/v2/templates/twentytwentyfive//page-contact-hero?context=edit" -u "$AUTH" \
   | python3 -c "import json,sys; print(json.load(sys.stdin)['content']['raw'])" \
   > templates/page-contact-hero.html
+
+curl -s "$SITE/wp-json/wp/v2/template-parts/twentytwentyfive//header?context=edit" -u "$AUTH" \
+  | python3 -c "import json,sys; print(json.load(sys.stdin)['content']['raw'])" \
+  > template-parts/header.html
 ```
 
 The global styles post ID (`8` above) is site-specific — rediscover it via
@@ -61,11 +76,21 @@ SITE='https://blog.comicland.net'
 AUTH='codex-agent:xxxx xxxx xxxx xxxx xxxx xxxx'
 ```
 
-Then deploy both tracked live-editable files with:
+Then deploy all tracked live-editable files with:
 
 ```bash
 Scripts/deploy-wordpress.sh
 ```
+
+## Publishing a post
+
+Create and publish a standard WordPress post with the saved credentials:
+
+```bash
+Scripts/publish-post.sh "Post title" "<p>Post body in HTML.</p>" "Short excerpt"
+```
+
+The script prints WordPress's response, including the published post URL.
 
 The manual API calls below are kept as a reference.
 
@@ -73,6 +98,10 @@ Edit the file locally, then PATCH it back — each of these merges just the
 one field being changed, so fetch the other current fields first if editing
 by hand rather than scripting it (an example flow is in the git history of
 this repo, from when the card/excerpt/read-more styling was first added).
+Note `template-parts/header.html` lives under the separate
+`wp/v2/template-parts/twentytwentyfive//header` collection, not
+`wp/v2/templates` — full-page templates and reusable template parts are
+different REST resources in WordPress.
 
 ```bash
 # CSS
