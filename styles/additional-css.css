@@ -166,7 +166,7 @@
     max-width: var(--wp--style--global--wide-size, 1200px);
   }
 
-  /* "Filter articles by: Newest / Popular" row, TED Blog-style. */
+  /* "Filter articles by: Newest / Featured" row, TED Blog-style. */
   .comicland-filterbar {
     align-items: baseline;
     gap: 20px;
@@ -189,17 +189,17 @@
     color: var(--blue-dark);
   }
   /* Default (no #popular in the URL): "Newest" reads as the active tab. */
-  .comicland-filterbar-link:first-of-type a {
+  .comicland-filterbar-link a[href="#newest"] {
     color: var(--blue-dark);
   }
-  body:has(#popular:target) .comicland-filterbar-link:first-of-type a {
+  body:has(#popular:target) .comicland-filterbar-link a[href="#newest"] {
     color: #9aa7b0;
   }
-  body:has(#popular:target) .comicland-filterbar-link:last-of-type a {
+  body:has(#popular:target) .comicland-filterbar-link a[href="#popular"] {
     color: var(--blue-dark);
   }
 
-  /* Newest/Popular views -- pure-CSS tab switch via the URL hash, no JS. */
+  /* Newest/Featured views -- pure-CSS tab switch via the URL hash, no JS. */
   .comicland-view-popular {
     display: none;
   }

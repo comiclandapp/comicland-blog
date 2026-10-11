@@ -130,3 +130,7 @@ from automatically.
 - **`comicland-site`** — the separate static marketing page at
   `app.comicland.net` (GitHub Pages, not WordPress). Unrelated platform,
   unrelated repo.
+
+## Homepage ordering
+
+Newest orders posts by publication date descending and ignores sticky-post priority. Featured shows the manually pinned (sticky) posts; it does not represent measured readership. The `#popular` fragment is retained for existing links. Active sort styling targets the link destination explicitly, because the introductory label is also a paragraph.
