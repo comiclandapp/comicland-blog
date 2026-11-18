@@ -44,3 +44,20 @@ Preview is recreated and checked before the same immutable candidate is selected
 - The local manga article and deployed preview were inspected in Chrome.
 - Preview checks passed for all 9 new articles, their RSS identities and sitemap entries, and 4 bitmap hashes.
 - The preview's existing 45 imported pages and 79 media hashes also passed the read-only site check.
+
+## Production verification
+
+Published November 18, 2026. Source content commit: `fa26cd3`, pushed to
+`origin/feature/vapor-blog`.
+
+- Candidate selected by preview and production: `comicland-blog:posts-20261118-v2`.
+- Image config ID: `sha256:d93b769cd18257be28202ed4f0ae4e0dd873407ab7b0ac08f16fe5695dcd456f`.
+- Production `/health` returned `200 OK` after startup.
+- Production verification passed for all 9 new articles, their RSS GUIDs and
+  sitemap entries, and the 4 bitmap hashes.
+- The full read-only production site check passed for 45 imported pages,
+  79 migrated-media checksums, listing, health, RSS, sitemap and contact.
+
+Only the blog services were recreated. Website/API projects, contact settings,
+indexing policy, WordPress rollback services and prior release images were left
+as they were.
