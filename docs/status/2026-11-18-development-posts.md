@@ -61,3 +61,22 @@ Published November 18, 2026. Source content commit: `fa26cd3`, pushed to
 Only the blog services were recreated. Website/API projects, contact settings,
 indexing policy, WordPress rollback services and prior release images were left
 as they were.
+
+## Tone rewrite deployment
+
+The same day, the posts were rewritten for voice (plain changelog titles,
+unadorned prose) and redeployed as a content-only overlay.
+
+- Source content commit: `4191521`, pushed to `origin/feature/vapor-blog`.
+- Candidate selected by preview and production: `comicland-blog:posts-20261118-v3`.
+- Built with `docker build --platform linux/amd64 --target test`, which ran the
+  Swift regression suite and the 4 Python importer tests before the runtime image.
+- Preview verified first: `/health` 200, new titles on the article pages, and the
+  read-only check passed for 45 imported pages, 79 media checksums, listing, RSS,
+  sitemap and contact.
+- Production then selected the same image. `/health` returned 200 and the
+  read-only production check passed with the same results.
+- Rollback: `.env.before-copy-20261118` in each directory, with
+  `comicland-blog:posts-20261118-v2` still present on the NAS.
+- Only the two blog services were recreated; website/API projects, contact
+  settings, WordPress rollback services and earlier images were left alone.
