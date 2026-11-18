@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Android: Search a Provider from Home",
+  "title": "Android provider search from Home",
   "date": "2026-11-18T13:31:44Z",
   "modified": "2026-11-18T13:33:44Z",
   "author": "ComicLand",
   "path": "/2026/11/18/android-search-providers-from-home/",
-  "excerpt": "Home’s add menu now leads directly to provider searches, with the available searches following the kind of library item you are browsing.",
+  "excerpt": "The Home add menu can search eight providers without leaving your library.",
   "categories": [
     {
       "name": "Development",
@@ -19,22 +19,10 @@
 }
 ---
 
-Finding a book in an outside catalogue should not require abandoning the part of your collection you were working on. Android’s Home add menu now includes **Search Provider**, bringing provider discovery into the same journey as adding a library item.
+Android’s Home add menu has a new entry, Search Provider, so you can look something up in an outside catalogue without leaving the library you were working in.
 
-## Start from the item you mean to add
+The menu picks its destinations from the library context you’re in and the searches each provider actually supports. Searches work for Comic Vine, League of Comic Geeks, the Grand Comics Database, BDGest, BDThèque, BubbleBD, Tebeosfera and Whakoom. Not every service supplies every kind of record: a series catalogue belongs in the Series workflow, and publisher search appears only where the provider has one.
 
-A comic search and a series search are different jobs. The menu uses the active library context and the searches each provider supports, rather than offering the same list of destinations everywhere.
+Browsing stays separate from importing. Opening a provider search shows that provider’s catalogue entry; importing is what brings the record into your library, where you can edit it and link it to the rest of the collection.
 
-The recent Android work connected searches for Comic Vine, League of Comic Geeks, the Grand Comics Database, BDGest, BDThèque, BubbleBD, Tebeosfera and Whakoom. That does not mean every service supplies every entity type. For example, a provider’s series catalogue belongs in the Series workflow; publisher search is offered where the provider supports it.
-
-## Browse first, then decide what to keep
-
-The provider remains the place to inspect its catalogue entry. Importing brings the selected information into your ComicLand library, where it can be edited and linked to the rest of the collection. Merely opening a search is not an instruction to import everything it returns.
-
-This work also brings Android closer to the iOS menu’s shape: the route into provider search is familiar, even though the menus themselves use each platform’s native presentation.
-
-## Match the journey, not just the menu
-
-The work has included the steps after the initial search. Provider imports need to reuse the right series, distinguish different printings, and report an interrupted or rate-limited request honestly. Those details matter more than having a provider’s name in a submenu.
-
-The result is a shorter path from “I want to add this” to the catalogue that can help identify it, without making provider browsing feel like a separate application.
+The steps after the first search changed too. Provider imports reuse the right series, keep different printings apart, and report an interrupted or rate-limited request instead of failing quietly. The route into the menu now matches iOS’s, though each platform keeps its own menu.

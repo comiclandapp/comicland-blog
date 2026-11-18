@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Tabs That Behave the Same Across the App",
+  "title": "Tabs on iOS and Android",
   "date": "2026-11-18T13:26:44Z",
   "modified": "2026-11-18T13:33:44Z",
   "author": "ComicLand",
   "path": "/2026/11/18/tabs-that-behave-the-same/",
-  "excerpt": "Home, provider screens and Statistics now use a consistent tab-strip pattern, including swipeable BDThèque tabs.",
+  "excerpt": "Home, provider screens and Statistics share one iOS tab control; Android did the same around its segmented pager.",
   "categories": [
     {
       "name": "Development",
@@ -19,20 +19,8 @@
 }
 ---
 
-Tabs are a small control you use hundreds of times. They should not change their appearance or their swipe behaviour simply because you moved from your library to a provider.
+iOS tab strips now come from one shared control — Home, the provider screens and Statistics all use it — and Android did the equivalent consolidation around its own segmented pager.
 
-Recent work has brought the iOS tab strips onto one shared control, from Home through provider screens and Statistics. Android has received the corresponding consolidation around its own segmented pager.
+The visible effect is that the selected label and the page under it stay in step. Tapping a tab shows that page, and swiping between pages moves the selection. BDThèque’s tabs swipe like the rest now, and Android’s Statistics pages between Overview and Spending.
 
-## Tap or swipe, with the same result
-
-The selected label and the page beneath it need to stay in step. Tapping a tab should show that page; swiping between pages should update the selected tab. BDThèque’s tabs now swipe like the rest, and Android’s Statistics can page between Overview and Spending.
-
-This is more than making two controls look alike. It removes separate implementations that could disagree about spacing, selection or gesture handling when one screen changed.
-
-## Familiar without forcing the same toolkit
-
-The two platforms still have native implementations. A shared iOS control is not being transplanted into Android, and a Compose pager is not being embedded in the iPhone app.
-
-What is shared is the expectation: a familiar strip of destinations, predictable selection and a consistent way to move between them. That makes the app easier to learn and makes future improvements less likely to reach only half of its screens.
-
-It is quiet work, but it is the sort of consistency that makes a large app feel like one app.
+Both platforms keep their own toolkit. The Android pager isn’t embedded in the iPhone app, and the shared iOS control isn’t a Compose component. On iOS, one control replaces the copies that could drift apart on spacing or selection whenever a screen changed; Android’s pager came together the same way.

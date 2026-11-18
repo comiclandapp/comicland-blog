@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Bringing an Older Collection onto the Mac",
+  "title": "Backup import on Mac",
   "date": "2026-11-18T13:25:44Z",
   "modified": "2026-11-18T13:33:44Z",
   "author": "ComicLand",
   "path": "/2026/11/18/safer-backup-imports-on-mac/",
-  "excerpt": "Supported iOS backup archives can become a Mac library, with staged extraction, cancellation and explicit handling of older stores.",
+  "excerpt": "Supported iOS backups become a Mac library; the source archive is left alone and a failed import is cleaned up.",
   "categories": [
     {
       "name": "Development",
@@ -19,22 +19,12 @@
 }
 ---
 
-A backup should be a way back into your collection, not an invitation to overwrite something by mistake. Recent native Mac work has focused on taking an iOS backup archive through import, migration and opening as a usable desktop library.
+Import Backup on the Mac builds a new `.comiclandlibrary` package from the archive you pick and leaves the archive alone. Import the same backup twice and you get two libraries with different names.
 
-## Keep the source archive intact
+Extraction happens in a staging area, and only a finished result is presented as a library. A failed import deletes the partial package instead of leaving something that looks ready to open. Long imports can be cancelled, with progress shown while they run.
 
-**Import Backup** builds a new `.comiclandlibrary` package from the selected archive. The source zip remains unchanged. Importing the same backup again gives the new library a distinct name rather than replacing the first one.
+Backups written by an older version are migrated on the newly imported copy. Opening an existing older library is the case that needs a warning, because that upgrade writes to your file. A store the app doesn’t recognise is refused rather than opened and rewritten, and a refusal leaves the file untouched.
 
-Extraction is staged before the result is treated as a finished library. If importing fails, the half-made package is removed instead of being left behind looking ready to open. There is also a cancellation path with progress feedback, so a long operation is not a silent commitment to wait indefinitely.
+Cover art comes from the archive. A backup with images included brings them into the package; a database-only backup can’t invent files that were never in it, and Photos-backed covers depend on whether the Mac can reach the asset.
 
-## Older data needs a deliberate upgrade
-
-Supported older backups are taken through the shared migration path on the newly imported copy. Opening an existing older library directly is a different operation: the app warns before upgrading the user’s file, because that writes to the library itself.
-
-A store the app cannot recognise is rejected rather than being optimistically opened and rewritten. Rejecting a library should not alter it.
-
-## Covers depend on what the backup contains
-
-An archive with included cover images can bring that artwork into the Mac library package. A database-only backup cannot manufacture missing image files. Photos-backed covers also depend on whether the relevant asset is available to the Mac.
-
-The work has included a supported older archive travelling through import, migration and opening, plus cancellation and cleanup checks. It is part of making the native Mac app useful with real collections, rather than only with a freshly created demo library.
+The work was checked end to end with an older archive — import, migration and opening — along with the cancel and cleanup paths.

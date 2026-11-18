@@ -1,11 +1,11 @@
 ---
 {
-  "title": "Manga Covers: Spine on the Right",
+  "title": "Cover orientation for manga",
   "date": "2026-11-18T13:33:44Z",
   "modified": "2026-11-18T13:33:44Z",
   "author": "ComicLand",
   "path": "/2026/11/18/manga-covers-spine-on-the-right/",
-  "excerpt": "A new cover-orientation switch mirrors the row for right-to-left books while keeping the front cover exactly where it belongs.",
+  "excerpt": "A Spine on the right switch mirrors the cover row for right-to-left books; the front scan stays the front.",
   "categories": [
     {
       "name": "Development",
@@ -19,26 +19,16 @@
 }
 ---
 
-A manga hardcover should not have to pretend it opens like a western comic. In the current ComicLand development build, the Comic editor has a **Spine on the right** switch for manga and other right-to-left books.
+The comic editor has a new switch for right-to-left books: **Spine on the right**. Turn it on and the unfolded cover row runs the other way.
 
-<figure><img src="/images/2026-11-development/manga-cover-editor.png" alt="ComicLand’s iOS editor showing the front flap, front cover, spine, back cover and back flap of The Dunwich Horror, with Spine on the right enabled." width="581" height="386"><figcaption>The iOS editor with “Spine on the right” enabled. The front artwork is left of the spine; the barcode remains on the back.</figcaption></figure>
+<figure><img src="/images/2026-11-development/manga-cover-editor.png" alt="ComicLand’s iOS editor showing the front flap, front cover, spine, back cover and back flap of The Dunwich Horror, with Spine on the right enabled." width="581" height="386"><figcaption>The iOS editor, cropped from a reader-supplied screenshot. The front artwork is left of the spine; the barcode remains on the back.</figcaption></figure>
 
-## The row changes; your scans keep their meaning
-
-With the switch off, the unfolded cover row runs **back flap → back → spine → front → front flap**. Turn it on and the row mirrors: **front flap → front → spine → back → back flap**. The editor’s strip updates immediately, and the labels follow the images.
-
-That does **not** mean swapping which scan is called Front or Back. Front still holds the title artwork. Back still holds the back-cover artwork, including the barcode when there is one. A card still opens on the front cover.
+With the switch off the row reads back flap, back, spine, front, front flap. With it on, the same five scans read front flap, front, spine, back, back flap. The editor’s strip updates as you flip it, and the labels stay with their images.
 
 ![A labelled diagram comparing the spine-left and spine-right cover rows; only their order changes.](/images/2026-11-development/manga-cover-order.png)
 
-## A useful correction from a real book
+Nothing is reclassified. Front still holds the title artwork and back still holds the back cover, barcode included. A card still opens on the front scan.
 
-An early interpretation treated a right-to-left book’s back scan as its display face. The example above exposed the mistake: that put the barcode on the card instead of the cover artwork. Reading direction tells us how to arrange the cover row; it does not tell us to reclassify somebody’s scans.
+An early version of this got it wrong. It treated a right-to-left book’s back scan as its display face, which put the barcode on the card instead of the artwork. Reading direction says how the row is arranged; it doesn’t say the reader filed their scans backwards.
 
-The corrected rule keeps the front scan as the normal face for cards, sharing and issue-derived series covers. Existing books keep the usual spine-left setting unless you change it.
-
-## The same book on each platform
-
-The orientation work has landed in the iOS and Android development branches, with the Mac using the shared Swift ordering rule. Android also follows the same front-stays-front convention. The aim is straightforward: catalogue the book as it actually sits in your hands, without having to file its images under misleading names.
-
-These changes are part of the current development build.
+The rule is in place on iOS and Android, and the Mac uses the same shared ordering code. Books stay spine-left unless the setting is changed.
